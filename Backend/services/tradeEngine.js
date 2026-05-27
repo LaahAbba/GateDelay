@@ -160,6 +160,14 @@ class TradeEngine {
           await dbMakerOrder.save(options);
         }
 
+        // Update real-time aggregation
+        try {
+          const tradeAggregator = require('./tradeAggregator');
+          await tradeAggregator.updateRealTimeStats(takerOrder.pair, match.price, match.amount);
+        } catch (e) {
+          console.error('Failed to update trade aggregation', e);
+        }
+
         const makerBaseBalance = await Balance.findOne({ userId: makerOrder.userId, asset: baseAsset }, null, options);
         const makerQuoteBalance = await Balance.findOne({ userId: makerOrder.userId, asset: quoteAsset }, null, options);
         
