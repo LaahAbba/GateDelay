@@ -8,6 +8,7 @@ import WalletButton from "../../app/components/WalletButton";
 
 const NAV_LINKS = [
   { href: "/dashboard", label: "Markets" },
+  { href: "/governance", label: "Governance" },
   { href: "/bridge", label: "Bridge" },
   { href: "/transactions", label: "History" },
   { href: "/profile", label: "Profile" },
